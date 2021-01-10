@@ -7,23 +7,26 @@ fn main() {
     1641, 1710, 1724, 705, 985, 1571, 1805, 131, 1788, 1707, 1513, 1615, 1897, 1476,1927, 1745, 1926, 1839, 1807, 1955, 1692, 1645, 1699, 1471, 1604, 1830, 1622, 1972, 1866, 1814,
     1816, 1855, 1820, 1034, 1673, 1704, 1969, 1580, 1980, 1739, 1896, 434, 497, 1851, 1933, 458, 1521, 1551, 1762, 2010, 1614, 1840, 1747, 1875, 1836, 1895, 1518, 1825, 1987];
     let mut i = 0;
-    let mut ys: [i32; 900] = [0;900];
+    let mut ys: [i32; 800] = [0;800];
     for num in xs.iter() {
         for num2 in xs.iter() {
-            if num + num2 == 2020 {
-                ys[i] = *num;
-                ys[i+1] = *num2;
-                ys[i+2] = num*num2;
-                i += 3;
+            for num3 in xs.iter(){
+                if num + num2 + num3 == 2020 {
+                    ys[i] = *num;
+                    ys[i+1] = *num2;
+                    ys[i+2] = *num3;
+                    ys[i+3] = num*num2*num3;
+                    i += 4;
+                }
             }
         }
     }
-    for l in 0..300 {
-        if ys[l*3] == 0{
+    for l in 0..200 {
+        if ys[l*4] == 0{
             break;
         }
-        let outnums = vec![ys[l*3], ys[l*3 + 1], ys[l*3 + 2]];
-        println!("{} and {} sum to 2020, with result {}", outnums[0], outnums[1], outnums[2]);
+        let outnums = vec![ys[l*4], ys[l*4 + 1], ys[l*4 + 2], ys[l*4 + 3]];
+        println!("{}, {} and {} sum to 2020, with result {}", outnums[0], outnums[1], outnums[2], outnums[3]);
     }
     println!("Hello, world!");
 }
